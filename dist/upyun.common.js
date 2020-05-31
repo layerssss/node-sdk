@@ -76,6 +76,7 @@ var createReq = function (endpoint, service, getHeaderSign) {
     }
 
     if (response.status !== 404) {
+      if (response.data && response.data.msg) throw new Error('upyun - ' + response.data.msg);
       throw new Error('upyun - response error: ' + error.message);
     } else {
       return response;
